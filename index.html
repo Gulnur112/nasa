@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NASA GULNUR</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: white;
+           
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #000;
+            padding: 10px 20px;
+            border-bottom: 1px solid #333;
+        }
+
+        .header-1, .header-3 {
+            display: flex;
+            align-items: center;
+        }
+
+        .header-2 img {
+            height: 40px; 
+        }
+
+      
+        .dropbtn, .newsbtn, .multimediabtn {
+            background-color: transparent;
+            color: white;
+            padding: 10px 15px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .dropbtn:hover, .newsbtn:hover, .multimediabtn:hover {
+            background-color: #333;
+        }
+
+        .arrow {
+            font-size: 10px;
+        }
+
+    
+        .dropdown, .news, .multimedia {
+            position: relative;
+            display: inline-block;
+            margin-right: 20px;
+        }
+
+       
+        .dropdown-content, .news-content, .multimedia-content {
+            display: none;
+            position: absolute;
+            background-color: #000; 
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5);
+            z-index: 1;
+            left: 0;
+            top: 100%;
+            border-radius: 0; 
+            padding: 0; 
+        }
+
+       
+        .dropdown-content {
+            display: none; 
+            min-width: 900px; 
+            padding: 20px; 
+            display: flex; 
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 20px; 
+        }
+
+        .explore-left-pane {
+            flex: 0 0 200px; 
+        }
+
+        .explore-left-pane p {
+            color: white;
+            padding: 8px 0; 
+            text-decoration: none;
+            display: block;
+            margin: 0;
+            font-size: 16px;
+            cursor: pointer; 
+        }
+
+        .explore-left-pane p:hover {
+            color: #ccc; 
+        }
+
+        .explore-right-pane {
+            flex: 1; 
+            display: grid; 
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .explore-right-pane h2 {
+            grid-column: 1 / -1; 
+            font-size: 14px;
+            color: #aaa;
+            margin-bottom: 10px;
+            margin-top: 0;
+            padding-left: 5px; 
+        }
+
+        .explore-right-pane .article-item {
+            background-color: #1a1a1a;
+            padding-bottom: 10px;
+            cursor: pointer;
+            border-radius: 5px; 
+            overflow: hidden; 
+        }
+
+        .explore-right-pane .article-item:hover {
+            background-color: #333;
+        }
+
+        .explore-right-pane img {
+            width: 100%;
+            height: 120px; 
+            object-fit: cover;
+            margin-bottom: 5px;
+        }
+
+        .explore-right-pane .article-meta {
+            padding: 0 10px; 
+            font-size: 12px;
+            color: #aaa;
+            margin-bottom: 5px;
+        }
+
+        .explore-right-pane h3 {
+            font-size: 14px;
+            margin: 5px 0 10px 0;
+            color: #ccc;
+            padding: 0 10px;
+        }
+        .news-content, .multimedia-content {
+            min-width: 250px;
+        }
+        .dropdown-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px; 
+            font-size: 20px; 
+            font-weight: bold;
+            color: white;
+            border-bottom: 1px solid #333; 
+            margin-bottom: 10px; 
+        }
+
+        .dropdown-header .arrow-icon {
+            font-size: 24px;
+            color: #ccc;
+            margin-left: 10px;
+        }
+
+        .news-content .links-section a,
+        .multimedia-content .links-section a {
+            color: white;
+            padding: 8px 20px; 
+            text-decoration: none;
+            display: block;
+            margin: 0;
+            font-size: 16px;
+        }
+
+        .news-content .links-section a:hover,
+        .multimedia-content .links-section a:hover {
+            background-color: #333; 
+        }
+
+    
+        .input input {
+            background-color: #333;
+            border: 1px solid #555;
+            padding: 8px 10px;
+            border-radius: 5px;
+            color: white;
+            font-size: 16px;
+            width: 200px;
+        }
+        .input input::placeholder {
+            color: #bbb;
+        }
+
+       
+        .nasa-live-btn {
+            background-color: #e60000;
+            color: white;
+            padding: 8px 15px;
+            border: 1px solid #e60000;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-left: 20px;
+            text-decoration: none;
+        }
+        .nasa-live-btn:hover {
+            background-color: #cc0000;
+        }
+        .hero-section {
+    position: relative;
+    width: 100%;
+    height: 100vh; 
+    background-image: url('images/iss072e940398~large.jpg'); 
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: left;
+    overflow: hidden;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.8) 40%, rgba(0, 0, 0, 0) 100%); 
+    z-index: 1;
+}
+
+.content {
+    position: relative;
+    z-index: 2;
+    max-width: 60%; 
+    padding: 20px;
+    margin-right: auto;
+    margin-left: 10%; 
+    color:white;
+   
+}
+
+.content h1 {
+    font-size: 4em;
+    margin-bottom: 20px;
+    line-height: 1.1;
+}
+
+.content p {
+    font-size: 1.2em;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 15px 30px;
+    background-color: #ff0000; 
+    color: white;
+    text-decoration: none;
+    font-size: 1.1em;
+    border-radius: 5px;
+  
+}
+
+.btn:hover {
+    background-color: #cc0000; 
+}
+.main{
+    display:flex;
+    flex-direction:row;
+    justify-content:space-between;
+}
+.image{
+    display:grid;
+    grid-template-columns:2fr 1fr 1fr;
+    justify-content:center;
+    align-items:center;
+    width:900px;
+    height:400px;
+    gap:10px;
+    margin-left:200px;
+}
+.image-1 img{
+    width:400px;
+    height:350px;
+}
+.image-2 img {
+     width:250px;
+    height:350px;
+}
+.image-3 img {
+     width:250px;
+    height:170px;
+}
+.image-4 img{
+     width:250px;
+    height:170px;
+}
+.text{
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr 1fr;
+}
+.text-1{
+     display:grid;
+    grid-template-columns:1fr 1fr ;
+}
+.text-2{
+     display:grid;
+    grid-template-columns:1fr 1fr ;
+}
+.text-3{
+     display:grid;
+    grid-template-columns:1fr 1fr ;
+}
+.text-4{
+     display:grid;
+    grid-template-columns:1fr 1fr ;
+}
+.text p{
+    color:gray;
+}
+.background{
+    background-image:url('images/1-yellowstone-river.webp');
+    position: relative;
+    width: 100%;
+    height: 100vh; 
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: left;
+    overflow: hidden;
+    
+}
+.background-1 h1{
+    font-size:70px;
+}
+.background-1 p{
+    font-size:20px;
+}
+.background-1{
+    width:500px;
+    color:white;
+     position: relative;
+    z-index: 2;
+    max-width: 60%; 
+    padding: 20px;
+    margin-right: auto;
+    margin-left: 10%; 
+    color:white;
+
+}
+.over{
+     position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.8) 40%, rgba(0, 0, 0, 0) 100%); 
+    z-index: 1;
+}
+.nasa{
+    display:flex;
+    justify-content:space-between;
+    font-size:20px;
+}
+.local img{
+    width:300px;
+    height:380px;
+    margin-left:10px;
+}
+.day{
+    display:grid;
+    grid-template-columns:1fr 2fr;
+    margin-top:150px;
+}
+.day-2 img{
+    width:800px;
+    height:500px;
+}
+.day-1 h4{
+    font-size:20px;
+}
+.day-1 h3{
+    font-size:30px;
+}
+.day-1 p{
+    width:300px;
+    font-size:15px;
+}
+.day-1 {
+    margin-left:30px;
+}
+.more{
+    font-size:25px;
+    margin-top:200px;
+    margin-left:30px;
+}
+.more-1{
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr;
+}
+.more-img-1{
+    width:400px;
+    height:450px;
+}
+.more-img-2{
+    width:400px;
+    height:430px;
+}
+.more-img-3{
+    width:400px;
+    height:440px;
+}
+.more-3 img {
+    width:600px;
+    height:600px;
+}
+.more-2 img{
+    width:100%;
+}
+.topic h2{
+    font-size:40px;
+    margin-top:200px;
+    margin-left:30px;
+}
+.topic-1 img{
+    width:300px;
+    height:380px;
+    margin-left:10px;
+}
+.topic-2 img{
+    width:300px;
+    height:380px;
+    margin-left:10px;
+    margin-top:20px;
+}
+.topic-3 img{
+    width:100%;
+    margin-top:30px;
+}
+ .local {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .local img {
+      width: 200px;
+      height: 280px;
+      object-fit: cover;
+      transition: transform 0.3s, box-shadow 0.3s;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-1">
+            <div class="dropdown">
+                <button class="dropbtn">
+                    Explore
+                    <span class="arrow">&#9662;</span> 
+                </button>
+                <div class="dropdown-content">
+                    <div class="explore-left-pane">
+                        <p>Home</p>
+                        <p>Missions</p>
+                        <p>Humans in Space</p>
+                        <p>Earth</p>
+                        <p>The Solar System</p>
+                        <p>The Universe</p>
+                        <p>Science</p>
+                        <p>Aeronautics</p>
+                        <p>Technology</p>
+                        <p>Learning Resources</p>
+                        <p>About NASA</p>
+                        <p>Español</p>
+                    </div>
+                    <div class="explore-right-pane">
+                        <h2>FEATURED</h2>
+                        <div class="article-item">
+                            <img src="images/Снимок экрана 2025-05-26 120516.png" >
+                            <div class="article-meta">6 MIN READ</div>
+                            <h3>What's Up: May 2025 Skywatching Tips from NASA</h3>
+                            <div class="article-meta">ARTICLE 4 WEEKS AGO</div>
+                        </div>
+                        <div class="article-item">
+                            <img src="images/Снимок экрана 2025-05-26 121004.png" >
+                            <div class="article-meta">2 MIN READ</div>
+                            <h3>Hubble Spies a Spiral So Inclined</h3>
+                            <div class="article-meta">ARTICLE 3 DAYS AGO</div>
+                        </div>
+                        <div class="article-item">
+                            <img src="images/Снимок экрана 2025-05-26 121017.png" >
+                            <div class="article-meta">3 MIN READ</div>
+                            <h3>NASA Supports Artemis Accords Signatories Advancing Exploration</h3>
+                            <div class="article-meta">ARTICLE 3 DAYS AGO</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="input">
+                <input type="text" placeholder="Search">
+            </div>
+        </div>
+        <div class="header-2">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/e/e5/NASA_logo.svg" alt="NASA Logo">
+        </div>
+        <div class="header-3">
+            <div class="news">
+                <button class="newsbtn">
+                    News & Events
+                    <span class="arrow">&#9662;</span> 
+                </button>
+                <div class="news-content">
+                    <div class="dropdown-header">
+                        News & Events <span class="arrow-icon">&#8594;</span> </div>
+                    <div class="links-section">
+                        <a href="#">News Releases</a>
+                        <a href="#">Recently Published</a>
+                        <a href="#">Video Series on NASA+</a>
+                        <a href="#">Podcasts</a>
+                        <a href="#">Blogs</a>
+                        <a href="#">Newsletters</a>
+                        <a href="#">Social Media</a>
+                        <a href="#">Media Resources</a>
+                        <a href="#">Events</a>
+                        <a href="#">Upcoming Launches & Landings</a>
+                        <a href="#">Virtual Guest Program</a>
+                    </div>
+                </div>
+            </div>
+            <div class="multimedia">
+                <button class="multimediabtn">
+                    Multimedia
+                    <span class="arrow">&#9662;</span> 
+                </button>
+                <div class="multimedia-content">
+                    <div class="dropdown-header">
+                        Multimedia <span class="arrow-icon">&#8594;</span> </div>
+                    <div class="links-section">
+                        <a href="#">NASA+</a>
+                        <a href="#">Images</a>
+                        <a href="#">NASA Live</a>
+                        <a href="#">NASA Apps</a>
+                        <a href="#">Podcasts</a>
+                        <a href="#">Image of the Day</a>
+                        <a href="#">e-Books</a>
+                        <a href="#">Sounds and Ringtones</a>
+                        <a href="#">Interactives</a>
+                        <a href="#">STEM Multimedia</a>
+                        <a href="#">NASA Brand & Usage Guidelines</a>
+                    </div>
+                </div>
+            </div>
+            <a href="#" class="nasa-live-btn">NASA+ LIVE</a>
+        </div>
+    </div>
+     <div class="hero-section">
+        <div class="overlay"></div>
+        <div class="content">
+            <h1>Return to Earth</h1>
+            <p>
+                NASA and its international partners will soon receive scientific research samples and hardware from the International Space Station. The SpaceX Dragon spacecraft with the scientific research and hardware will splash down at approximately 1:45 a.m. EDT on Sunday, May 25, off the coast of California. NASA will post updates on the agency’s space station blog but will not stream the splashdown.
+            </p>
+            <a href="#" class="btn">Mission Updates</a>
+        </div>
+    </div>
+    <div class="main">
+       <h1>Featured News</h1>
+       <h3>Recently Published</h3>
+    </div>
+    <div class="image">
+        <div class="image-1">
+            <img src="images/Снимок экрана 2025-05-26 173342.png">
+        </div>
+        <div class="image-2">
+            <img src="images/Снимок экрана 2025-05-26 173349.png">
+        </div>
+       <div class="images">
+            <div class="image-3">
+                <img src="images/Снимок экрана 2025-05-26 173355.png">
+            </div>
+            <div class="image-4">
+                <img src="images/Снимок экрана 2025-05-26 173405.png">
+            </div>
+       </div>
+    </div>
+    <div class="text">
+        <div class="text-1">
+            <img src="images/Снимок экрана 2025-05-26 174832.png">
+            <div class="all">
+                <p>6 Min Read</p>
+                <h4>NASA’s Dragonfly Mission Sets Sights on Titan’s Mysteries</h4>
+                <p>Article</p>
+            </div>
+        </div>
+        <div class="text-2">
+            <img src="images/Снимок экрана 2025-05-26 174836.png">
+            <div class="all">
+                <p>5 Min Read</p>
+                <h4>NASA’s Dragonfly Mission Sets Sights on Titan’s Mysteries</h4>
+                <p>Article</p>
+            </div>
+        </div>
+        <div class="text-3">
+            <img src="images/Снимок экрана 2025-05-26 174841.png">
+            <div class="all">
+                <p>2 Min Read</p>
+                <h4>NASA’s Dragonfly Mission Sets Sights on Titan’s Mysteries</h4>
+                <p>Article</p>
+            </div>
+        </div>
+        <div class="text-4">
+            <img src="images/Снимок экрана 2025-05-26 174849.png">
+            <div class="all">
+                <p>4 Min Read</p>
+                <h4>NASA’s Dragonfly Mission Sets Sights on Titan’s Mysteries</h4>
+                <p>Article</p>
+            </div>
+        </div>
+    </div>
+    <div class="background">
+       <div class="over"></div>
+       <div class="background-1">
+            <h1>Satellite Spots Large-Scale River Waves</h1>
+            <p>In a first, researchers from NASA and Virginia Tech used satellite data to measure the height and speed of potentially hazardous flood waves traveling down U.S. rivers.</p>
+            <h3>More About SWOTabout Satellite Spots Large-Scale River Waves</h3>
+       </div>
+    </div>
+    <div class="nasa">
+        <h3>NASA Science</h3>
+        <h3>Discover More</h3>
+    </div>
+    <div class="local" id="gallery"></div>
+    <div class="day">
+        <div class="day-1">
+            <h3>Image Of The Day</h3>
+            <h4>Moon and Flag at NASA Michoud</h4>
+            <p>The waning gibbous moon sets behind a flag at NASA’s Michoud Assembly Facility in New Orleans just after sunrise on Wednesday, March 19, 2025.</p>
+            <h4>Browse Image Archive</h4>
+        </div>
+        <div class="day-2">
+            <img src="images/Снимок экрана 2025-05-26 183345.png">
+        </div>
+    </div>
+    <div class="more">
+        <h2>MORE NASA IMAGES</h2>
+    </div>
+    <div classs="more-1">
+        <img src="images/Снимок экрана 2025-05-26 184320.png" class="more-img-1">
+        <img src="images/Снимок экрана 2025-05-26 184331.png" class="more-img-2">
+        <img src="images/Снимок экрана 2025-05-26 184336.png" class="more-img-3">
+    </div>
+    <div class="more-2">
+        <img src="images/Снимок экрана 2025-05-26 185118.png">
+    </div>
+    <div class="more-3">
+        <img src="images/Снимок экрана 2025-05-26 185238.png">
+        <img src="images/Снимок экрана 2025-05-26 185250.png">
+    </div>
+    <div class="topic">
+        <h2>More Topics from NASA</h2>
+    </div>
+    <div class="topic-1">
+        <img src="images/Снимок экрана 2025-05-26 185842.png" >
+        <img src="images/Снимок экрана 2025-05-26 185848.png">
+        <img src="images/Снимок экрана 2025-05-26 185858.png">
+        <img src="images/Снимок экрана 2025-05-26 185921.png">
+    </div>
+     <div class="topic-2">
+        <img src="images/Снимок экрана 2025-05-26 190227.png">
+        <img src="images/Снимок экрана 2025-05-26 190233.png">
+        <img src="images/Снимок экрана 2025-05-26 190245.png">
+        <img src="images/Снимок экрана 2025-05-26 190255.png">
+    </div>
+    <div class="topic-3">
+        <img src="images/Снимок экрана 2025-05-26 191307.png">
+    </div>
+    <script>
+        const exploreButton = document.querySelector('.dropbtn');
+        const exploreDropdown = document.querySelector('.dropdown-content');
+
+        exploreButton.addEventListener('click', (event) => {
+            event.stopPropagation(); 
+            exploreDropdown.style.display = exploreDropdown.style.display === 'flex' ? 'none' : 'flex'; 
+        
+            newsDropdown.style.display = 'none';
+            multimediaDropdown.style.display = 'none';
+        });
+        const newsButton = document.querySelector('.newsbtn');
+        const newsDropdown = document.querySelector('.news-content');
+
+        newsButton.addEventListener('click', (event) => {
+            event.stopPropagation();
+            newsDropdown.style.display = newsDropdown.style.display === 'block' ? 'none' : 'block';
+          
+            exploreDropdown.style.display = 'none';
+            multimediaDropdown.style.display = 'none';
+        });
+
+    
+        const multimediaButton = document.querySelector('.multimediabtn');
+        const multimediaDropdown = document.querySelector('.multimedia-content');
+
+        multimediaButton.addEventListener('click', (event) => {
+            event.stopPropagation();
+            multimediaDropdown.style.display = multimediaDropdown.style.display === 'block' ? 'none' : 'block';
+   
+            exploreDropdown.style.display = 'none';
+            newsDropdown.style.display = 'none';
+        });
+        window.addEventListener('click', (e) => {
+            if (!e.target.closest('.dropdown')) {
+                exploreDropdown.style.display = 'none';
+            }
+            if (!e.target.closest('.news')) {
+                newsDropdown.style.display = 'none';
+            }
+            if (!e.target.closest('.multimedia')) {
+                multimediaDropdown.style.display = 'none';
+            }
+        });
+      
+      
+
+
+        async function loadGallery() {
+       try {
+        const response = await fetch("data.json");
+        const data = await response.json();
+
+        const container = document.getElementById("gallery");
+        data.forEach(item => {
+          const img = document.createElement("img");
+          img.src = item.image;
+          img.alt = item.title;
+          img.onclick = () => {
+            window.location.href = `detail.html?id=${item.id}`;
+          };
+          container.appendChild(img);
+        });
+      } catch (error) {
+        console.error("wrong", error);
+      }
+    }
+
+    loadGallery();
+    </script>
+</body>
+</html>

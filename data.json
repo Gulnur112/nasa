@@ -1,0 +1,26 @@
+[
+  {
+    "id": 0,
+    "title": "FreshWater",
+    "description": "Water drives life, economies, and security — and NASA tracks its constant motion as it shifts between sea, land, and sky. From sustaining agriculture and energy to shaping landscapes and communities, freshwater is essential. NASA’s Earth science data helps the nation manage this vital resource, prepare for droughts and floods, and support long-term water resilience.",
+    "image": "https://assets.science.nasa.gov/dynamicimage/assets/science/esd/eo/images/iotd/2025/tennflooding_oli2_20250217_lrg.jpg?w=2000&h=1920&fit=crop&crop=faces%2Cfocalpoint"
+  },
+  {
+    "id": 1,
+    "title": "Weather",
+    "description": "The Earth’s weather system includes the dynamics of the atmosphere and its interaction with the oceans and land. Weather ranges from local or micro-physical processes that occur in minutes through global-scale phenomena that we can predict with a degree of success at an estimated maximum of two weeks prior.",
+    "image": "https://www.nasa.gov/wp-content/uploads/2017/03/WeatherFocusGPM.png"
+  },
+  {
+    "id": 2,
+    "title": "Weather2",
+    "description": "Light waves across the electromagnetic spectrum behave in similar ways. When a light wave encounters an object, they are either transmitted, reflected, absorbed, refracted, polarized, diffracted, or scattered depending on the composition of the object and the wavelength of the light.",
+    "image": "https://science.nasa.gov/wp-content/uploads/2023/04/waveBehavior_2_0.png"
+  },
+  {
+    "id": 3,
+    "title": "Earth",
+    "description": "The Earth Observer newsletter, published by NASA's Science Support Office (Code 610) at the Goddard Space Flight Center, has been an authoritative source for consolidating NASA Earth Science news for over three decades. Past issues are available for download via the Archives Page.",
+    "image": "https://images-assets.nasa.gov/image/GSFC_20171208_Archive_e001587/GSFC_20171208_Archive_e001587~large.jpg?w=1920&h=1920&fit=crop&crop=faces%2Cfocalpoint"
+  }
+]
